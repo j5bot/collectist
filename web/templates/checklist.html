@@ -1,0 +1,28 @@
+<script type="text/template" id="main-template">
+	<article class="series" data-bind="foreach: { data: model().models, as: 'series' }">
+		<ol class="series-item-list" data-bind="template: { name: 'item-template', foreach: series.itemlist().items, as: 'item' }"></ol>
+	</article>
+</script>
+
+<script type="text/template" id="item-template">
+	<li data-bind="text: item.toString()">
+		<article class="base">
+			<input type="checkbox"/> <input type="checkbox" class="sticker"/><img class="main-image" src=""/> <div class="name"></div> <div class="number"></div>
+		</article>
+		<ol>
+			<li><input type="checkbox"/> <img class="colors" src=""/></li>
+		</ol>
+	</li>
+</script>
+
+<script type="text/template" id="gogo-template">
+	<div class="tooltip">
+		<summary><h2></h2></summary>
+		<details open="true">
+			<dl>
+				<dt></dt>
+				<dd></dd>
+			</dl>
+		</details>
+	</div>
+</script>

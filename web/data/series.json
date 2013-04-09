@@ -1,0 +1,72 @@
+{
+	"series": [
+		{
+			"id": "s1",
+			"name": "Series 1",
+			"colors": 4,
+			"stickers": true,
+			"images": "/images/gogos/s1/gogo",
+			"prefix": "s1",
+			"start": 1,
+			"end": 80,
+			"offset": 0
+		},
+		{
+			"id": "s1w",
+			"name": "Series 1: Wanted",
+			"colors": 1,
+			"stickers": true,
+			"images": "/images/gogos/s1/gogo",
+			"prefix": "s1w",
+			"start": 81,
+			"end": 100,
+			"offset": 80
+		},
+		{
+			"id": "s2",
+			"name": "2: Evolution",
+			"images": "/images/gogos/s2/gogo",
+			"prefix": "s2",
+			"colors": 5,
+			"stickers": true,
+			"start": 1,
+			"end": 80,
+			"offset": 100
+		},
+		{
+			"id": "le",
+			"name": "Tins, Etc.",
+			"colors": 5,
+			"stickers": false,
+			"images": "/images/gogos/le/gogo",
+			"prefix": "le",
+			"start": 1,
+			"end": 31,
+			"offset": 180
+		},
+		{
+			"id": "s3",
+			"name": "3: Explorer",
+			"colors": 5,
+			"stickers": true,
+			"images": "/images/gogos/s3/gogo",
+			"prefix": "s3",
+			"start": 1,
+			"end": 80,
+			"offset": 211
+		},
+		{
+			"id": "vb",
+			"name": "Soccer Gogos",
+			"description": "Voetbal Gogos released in Holland through the C1000 supermarket chain, celebrating the 2010 Soccer World Cup.",
+			"colors": 0,
+			"stickers": false,
+			"images": "/images/gogos/voetbal/gogo",
+			"prefix": "vb",
+			"start": 1,
+			"end": 90,
+			"offset": 0,
+			"source": "c1000"
+		}
+	]
+}
