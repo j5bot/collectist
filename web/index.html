@@ -1,15 +1,34 @@
 <!doctype html>
-<html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		
 		<title>Gogos Crazy Bones :: Collect/ist Collect/or Checkl/ist</title>
-		<link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+		
+		<link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/app.css" />
+		
+		<script src="/js/lib/custom.modernizr.js"></script>
 	</head>
 	<body>
+		<header>
+			<img class="logo" alt="Collectist Logo" src="/images/logo.png" />
+			<a class="site-title"><span class="collection-title">GOGOs CRAZY BONES</span> <span class="collectist-primary">COLLECT</span><span class="collectist-secondary">or checkl</span><span class="collectist-primary">IST</span></a>
+		</header>
 
-		<section id="app"></section>
+		<div class="row">
+			<div id="menu-container" class="columns large-2 small-4">
+				<section class="panel columns large-2 small-4" id="menu"></section>
+			</div>
+			<div id="app-container" class="columns large-10 small-8">
+				<section class="panel" id="app"></section>
+			</div>
+		</div>
 		
 		<section id="templates"></section>
 
-		<script data-main="js/config" src="js/require.debug.js"></script>
+		<script data-main="/js/config" src="/js/require.debug.js"></script>
 	</body>
 </html>

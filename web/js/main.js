@@ -1,11 +1,17 @@
 (function (global, undefined) {
 
-	define('main', ['backbone', 'app/collectist-router'], function (Backbone, Router) {
+	define('main',
+		['backbone', 'namespace', 'app/collectist-router'],
+		function (Backbone, namespace, Router) {
 
 		var app = {},
 			router = new Router({
 				app: app
 			});
+
+		namespace('org.Collectist', {
+			app: app
+		});
 
 		app.router = router;
 

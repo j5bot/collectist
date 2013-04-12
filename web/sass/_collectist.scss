@@ -1,0 +1,106 @@
+$navbartextcolor: #000;
+$navbarbgcolor: #fce3cd;
+$navbargradientcolorhigh: tint(#ff9300, 50);
+$navbargradientcolorlow: #dba000;
+
+$appbgcolor: rgba(255,255,255,0.7);
+$appbordercolor: rgba(100,80,40,0.3);
+$appshadowcolor: rgba(100,60,20,0.8);
+
+$menuitembgcolor: rgba(255,255,255,0.9);
+$menuitemshadowcolor: rgba(160,120,80,0.8);
+$menubgcolor: rgba(255,250,230,0.9);
+$menushadowcolor: $appshadowcolor;
+
+$menuborderradius: 20px;
+
+header {
+	width: 100%;
+
+	line-height: 80px;
+	font-size: 1.2em;
+	padding-left: 180px;
+	background-color: $navbarbgcolor;
+	@include background-image(linear-gradient(top, $navbarbgcolor 62%, $navbargradientcolorhigh 100%));
+
+	color: $navbartextcolor;
+
+	a {
+		color: $navbartextcolor;
+	}
+
+	.logo {
+		position: fixed;
+		top: 10px;
+		left: 15px;
+		z-index: 50;
+	}
+}
+
+#menu-container {
+	padding: 70px 0px 10px 25px;
+	position: relative;
+}
+#menu {
+	background-color: $menubgcolor;
+	text-align: right;
+	position: fixed;
+	left: 10px;
+	padding: 17px 0px 10px 10px;
+	@include border-left-radius($menuborderradius);
+	@include box-shadow($menushadowcolor 0px 10px 15px);
+
+	li {
+		width: 100%;
+		padding: 0px 20px 0px 20px;
+		border: solid 1px $menuitemshadowcolor;
+		border-width: 1px 0px 1px 1px;
+		@include border-left-radius($menuborderradius);
+		margin: 0px 0px 5px 0px;
+		background-color: $menuitembgcolor;
+
+		@include box-shadow(inset $menuitemshadowcolor 1px 0 5px 1px);
+
+		a {
+			font-weight: bold;
+			color: $menushadowcolor;
+		}
+	}
+}
+#app-container {
+	padding: 20px 25px 10px 0px;
+}
+#app {
+	position: relative;
+	min-height: 600px;
+	background-color: $appbgcolor;
+	@include border-radius(40px);
+	@include box-shadow($appshadowcolor 0px 5px 20px);
+	border: double 12px $appbordercolor;
+}
+
+.collection-title {
+	letter-spacing: 0.2em;
+	font-size: 1.2em;
+
+	&:after {
+		content: " :: ";
+	}
+}
+
+.collectist-primary {
+	letter-spacing: 0.2em;
+}
+
+.collectist-secondary {
+	font-size: 0.6em;
+	letter-spacing: 0em;
+	text-transform: uppercase;
+
+	&:before {
+		content: " /";
+	}
+	&:after {
+		content: "/ ";
+	}
+}

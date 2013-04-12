@@ -14,8 +14,6 @@ define([
 				var app = this,
 					$fragment = $(templateMarkup);
 
-				app.templates = {};
-
 				$fragment.filter('script').each(function (index) {
 					if (!document.getElementById(this.id)) {
 						$('#templates').append(this);
@@ -23,6 +21,10 @@ define([
 				});
 
 				kb.ViewModel.prototype.constructor.apply(app, arguments);
+			},
+
+			isCurrent: function (seriesid) {
+				return this.current() === seriesid();
 			}
 		})
 	});

@@ -8,7 +8,7 @@
 					prefix: 'gogos'
 				}
 			},
-			baseUrl: 'js/lib',
+			baseUrl: '/js/lib',
 			shim: {
 				'backbone': {
 					deps: ['underscore', 'jquery'],

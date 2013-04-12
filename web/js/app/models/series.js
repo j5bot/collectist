@@ -23,16 +23,19 @@ define([
 					source: this.get('source')
 				}) });
 
-				series.set({ 'checklists': new Collections.Checklist({
-					model: org.Collectist.App.Models.Checklist
+				series.set({ 'checklist': 'have' });
+
+				series.set({ 'checklists': new Collections.Checklist([], {
+					model: org.Collectist.App.Models.Checklist,
+					series: series
 				}) });
 
-				series.get('itemlist').fetch({
+				series.get('checklists').fetch({
 					success: function (model, response, options) {
-						// var vm = new ViewModels.Series(model, options);
+
 					}
 				});
-				series.get('checklists').fetch();
+
 			}
 		})
 

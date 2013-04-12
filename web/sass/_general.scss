@@ -1,6 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Orbitron:400,500);
 
-* {
+.row { max-width: 100%; }
+
+*, h2, h3 {
 	font-family: Orbitron, Helvetica, sans-serif;
 }
 
@@ -12,50 +14,153 @@
 	font-size: 1.2em;
 }
 
-.series {
-	display: none;
-	padding: 0px !important;
+#tiptip_content {
+	h2 {
+		font-size: 13px;
+		text-align: center;
+		margin: 0px;
+		padding: 0px;
+		padding-bottom: 5px;
+		width: auto;
+	}
+	dl {
+		text-align: left;
+		width: auto;
+		margin: 0px;
+		padding: 0px;
+	}
+	dt {
+		margin: 0px;
+		padding: 0px;
+		text-decoration: underline;
+	}
+	dd {
+		margin: 0px;
+		padding: 0px;
+		padding-bottom: 5px;
+	}
 }
 
-.series a {
-	font-size: 18px;
-	line-height: 18px;
-}
-
-.series p {
-	text-align: left;
-	padding: 15px;
-}
-
-.series ol {
-	padding: 0px !important;
+#save {
+	font-size: 20px;
+	line-height: 35px;
+	margin-top: 10px;
+	height: 35px;
+	width: 80%;
+	
 }
 
 h1 {
 	color: #ffffff;
-	text-shadow: 5px 5px 3px rgba(120,120,120,0.6);
+	@include text-shadow($textshadowcolor 5px 5px 3px);
 }
 
 h1, input[type=button] {
 	font-style: italic;
 }
 
+/*
 h3 {
 	font-size: 12px; font-family: Helvetica,sans-serif;
-	-moz-box-shadow: 5px 5px 3px rgba(120,120,120,0.6);
-	-webkit-box-shadow: 5px 5px 3px rgba(120,120,120,0.6);
-	box-shadow: 5px 5px 3px rgba(120,120,120,0.6);
+	@include box-shadow($headingshadowcolor 5px 3px 3px);
 }
+*/
 
 body {
-	background-color: #ffdd00;
+	background-color: $bodybgcolor;
+	background-image: url(../images/bg/cardboard-repeating-light.jpg);
+}
+
+.series-menu {
+	list-style-type: none;
+	margin-right: -1px;
+}
+
+.series-item-list {
 	text-align: center;
-	margin: 5px;
 }
 		
 .series {
 	margin: 0px;
 	padding: 0px;
+
+	h3 {
+		position: absolute;
+		top: -30px;
+		left: -20px;
+		padding: 8px;
+		background-color: $seriescountbgcolor;
+		border: solid 1px $seriescountbordercolor;
+		@include border-radius(1000px);
+
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	a {
+		font-size: 18px;
+		line-height: 18px;
+	}
+
+	p {
+		text-align: left;
+		padding: 15px;
+	}
+
+	ol {
+		padding: 0px !important;
+
+		ol {
+			margin-left: 176px;
+			height: 212px;
+		}
+	}
+
+	input {
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		z-index: 3;
+
+		&.sticker {
+			bottom: 15px;
+			top: auto;
+		}
+	}
+}
+
+/* list item */
+.series-item-list-item {
+	background-color: $itembgcolor;
+	position: relative;
+	display: inline-block;
+	border: solid 3px $itembordercolor;
+	@include border-radius($itemborderradius);
+	// border-top-left-radius: 0px;
+	// border-bottom-left-radius: 0px;
+	margin: 5px;
+	width: 218px;
+	
+	@include box-shadow($itemshadowcolor 5px 5px 3px);
+
+	ol li {
+		background-color: transparent;
+		
+		position: relative;
+		display: inline-block;
+		border: solid 0px transparent;
+		
+		border-radius: 0px;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		
+		margin: 0px;
+		float: left;
+		list-style-type: none;
+		width: auto;
+		height: 53px;
+		
+		@include box-shadow(none);
+	}
 }
 
 .checklist {
@@ -63,57 +168,34 @@ body {
 	padding: 0px;
 	padding-top: 5px;
 	padding-bottom: 8px;
-	background-color: #ffdd00;
-	border: solid 1px #cccccc;
-	border-radius: 3px;
+	background-color: $checklistbgcolor;
+	border: solid 1px $checklistbordercolor;
+	@include border-radius($checklistborderradius);
+
+	> li {
+		line-height: 0px;
+		font-size: 0px;
+	}
 }
 
-.checklist > li {
-	line-height: 0px;
-	font-size: 0px;
-}
-
-.series input {
-	vertical-align: top;
-	font-size: 3em;
-	height: 30px;
-	width: 30px;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	z-index: 3;
-}
-
-.series input.sticker {
-	bottom: 0px;
-	top: auto;
-}
-
-.series ol li {
-	background-color: #fff;
-	position: relative;
-	display: inline-block;
-	border: solid 1px #999;
-	border-radius: 7px;
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-	margin: 5px;
-	width: 310px;
-	
-	-moz-box-shadow: 5px 5px 3px rgba(120,120,120,0.6);
-	-webkit-box-shadow: 5px 5px 3px rgba(120,120,120,0.6);
-	box-shadow: 5px 5px 3px rgba(120,120,120,0.6);
-}
-
-.series ol ol {
-	height: 212px;
+img.colors {
+	margin-left: 5px;
+	width: 35px;
 }
 
 .base {
-	position: relative;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
 	display: block;
-	float: left;
-	height: 213px;
+	height: 212px;
+	overflow: hidden;
+	@include border-left-radius($checklistborderradius);
+}
+
+.main-image {
+	width: 175px;
 }
 
 .name {
@@ -121,11 +203,11 @@ body {
 	bottom: 0px;
 	left: 0px;
 	padding-right: 8px;
-	width: 168px;
+	width: 175px;
 	text-align: right;
-	opacity: 0.8;
-	background-color: #aaa;
-	color: #fff;
+	background-color: $namebgcolor;
+	color: $nametextcolor;
+	@include border-bottom-left-radius($checklistborderradius);
 	line-height: 34px;
 	font-size: 19px;
 	z-index: 1;
@@ -144,8 +226,8 @@ body {
 	border-bottom-left-radius: 5px;
 	
 	opacity: 0.7;
-	background-color: #fff;
-	color: #000;
+	background-color: $numberbgcolor;
+	color: $numbertextcolor;
 	line-height: 34px;
 	z-index: 1;
 }
@@ -155,64 +237,8 @@ body {
 	font-weight: 500;
 }
 
-.series ol li ol li {
-	background-color: transparent;
-	
-	position: relative;
-	display: inline-block;
-	border: solid 0px transparent;
-	
-	border-radius: 0px;
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-	
-	margin: 0px;
-	float: left;
-	list-style-type: none;
-	width: auto;
-	height: 106px;
-	
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-
 .tooltip {
 	display: none;
-}
-
-#tiptip_content h2 {
-	font-size: 13px;
-	text-align: center;
-	margin: 0px;
-	padding: 0px;
-	padding-bottom: 5px;
-	width: auto;
-}
-#tiptip_content dl {
-	text-align: left;
-	width: auto;
-	margin: 0px;
-	padding: 0px;
-}
-#tiptip_content dt {
-	margin: 0px;
-	padding: 0px;
-	text-decoration: underline;
-}
-#tiptip_content dd {
-	margin: 0px;
-	padding: 0px;
-	padding-bottom: 5px;
-}
-
-#save {
-	font-size: 20px;
-	line-height: 35px;
-	margin-top: 10px;
-	height: 35px;
-	width: 80%;
-	
 }
 
 p {
@@ -224,14 +250,15 @@ p {
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
-}
-.color-set li {
-	padding: 5px 3px;
-	margin-bottom: 3px;
-	
-	display: inline-block;
-	line-height: 20px;
-	width: 150px;
-	border: solid 1px #cccccc;
-	text-align: center;
+
+	li {
+		padding: 5px 3px;
+		margin-bottom: 3px;
+		
+		display: inline-block;
+		line-height: 20px;
+		width: 150px;
+		/* border: solid 1px #cccccc; */
+		text-align: center;
+	}
 }

@@ -11,12 +11,10 @@ require([
 				data: []
 			},
 
+			idAttribute: 'id',
+
 			initialize: function () {
 				this.set('bytes', new BigBit(this.get('data'), 8));
-			},
-
-			parse: function () {
-
 			}
 		})
 	});

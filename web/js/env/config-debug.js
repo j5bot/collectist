@@ -22,6 +22,8 @@ define([], function () {
 			// data
 			'data':			'../../data',
 
+			'backbone-modelref':	'plugins/backbone-modelref',
+
 			// html fragments
 			'tmpl':			'../../templates',
 			'templates':	'../../templates'
