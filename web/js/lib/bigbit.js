@@ -27,26 +27,23 @@ define([], function () {
 
 			var bitPosition,
 				toggleByte,
-				bitLength = this.length(),
-				byteLength = this.bytes.length;
+				bitLength = this.length();
 
 			if (bitLength <= pos) {
 				
 				// prepends a 1, which adds one new byte and a total of 32 new bit registers, with the last of the new byte set to 1
 				// e.g. 00001111 -> 0000000100001111
 				if (create) {
-					this.bytes.unshift(1);
+					this.bytes.unshift(0);
 				}
 
-			} else {
+			}
+			// figure out what bit position in a byte this should be
+			bitPosition = pos % BYTE_SIZE;
+			// which byte to change, the bigger the position, the smaller the byte
+			toggleByte = this.bytes.length - Math.floor(pos / BYTE_SIZE_FLOAT) - 1;
 
-				// figure out what bit position in a byte this should be
-				bitPosition = pos % BYTE_SIZE;
-				// which byte to change, the bigger the position, the smaller the byte
-				toggleByte = byteLength - Math.floor(pos / BYTE_SIZE_FLOAT) - 1;
-
-				return callback.call(this, pos, toggleByte, bitPosition);
-			}		
+			return callback.call(this, pos, toggleByte, bitPosition);
 		},
 		
 		length: function () {

@@ -28,7 +28,7 @@ define([
 			},
 			addDefault: function (name) {
 				var seriesid = this.series.id;
-				if (!this.get(seriesid + '-' + name)) {
+				if (!this.get(seriesid + '/' + name)) {
 					this.add(this.create({ id: seriesid + '/' + name }));
 				}
 			}

@@ -11,4 +11,6 @@ app.get('/series/*', function (req, res) {
 });
 
 server.listen(process.env.PORT);
-console.log('Express server listening on port %d', server.address().port);
+if (server.address()) {
+	console.log('Express server listening on port %d', server.address().port);
+}
