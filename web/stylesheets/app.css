@@ -1249,7 +1249,7 @@ body { background-color: #ffdd00; background-image: url(../images/bg/cardboard-r
 .series-item-list { margin-top: 40px; text-align: center; }
 
 .series { margin: 0px; padding: 0px; }
-.series h2 { position: absolute; top: -8px; left: 0px; height: 50px; padding: 10px 10px 10px 40px; width: 100%; -moz-border-radius-topleft: 30px; -webkit-border-top-left-radius: 30px; border-top-left-radius: 30px; -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; background-color: rgba(150, 60, 30, 0.5); }
+.series h2 { position: absolute; top: -8px; left: 0px; height: 50px; padding: 10px 10px 10px 40px; width: 100%; -moz-border-radius-topleft: 30px; -webkit-border-top-left-radius: 30px; border-top-left-radius: 30px; -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; background-color: rgba(150, 60, 30, 0.5); color: #fff; }
 .series h3 { position: absolute; top: -30px; left: -20px; padding: 8px; background-color: white; border: solid 1px rgba(100, 80, 40, 0.3); -webkit-border-radius: 1000px; -moz-border-radius: 1000px; border-radius: 1000px; font-family: Helvetica, Arial, sans-serif; }
 .series a { font-size: 18px; line-height: 18px; }
 .series p { text-align: left; padding: 15px; }

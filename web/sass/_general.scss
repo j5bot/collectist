@@ -95,6 +95,7 @@ body {
 		
 		@include border-top-radius($appborderradius - 10);
 		background-color: $seriestitlebgcolor;
+		color: #fff;
 	}
 
 	h3 {

@@ -92,6 +92,10 @@ define([
 				return item;
 			},
 
+			hasStickers: function () {
+				return this.stickers && this.stickers();
+			},
+
 			tick: function (data, event) {
 				var router = org.Collectist.app.router,
 					target = event.target,

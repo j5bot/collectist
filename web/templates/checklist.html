@@ -19,10 +19,10 @@
 <script type="text/template" id="item-template">
 	<li class="series-item-list-item">
 		<article class="base">
-			<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index }" /> <input type="checkbox" class="sticker" data-bind="seriesitem: { serieslist: serieslist, index: $index, offset: 1 }" /><img class="main-image" src="" data-bind="attr: { src: serieslist.primaryImage(item.number) }" /> <div class="name" data-bind="text: name">Mosh</div> <div class="number" data-bind="text: number">1</div>
+			<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index }" /> <input type="checkbox" class="sticker" data-bind="seriesitem: { serieslist: serieslist, index: $index, offset: 1, sticker: true }" /><img class="main-image" src="" data-bind="attr: { src: serieslist.primaryImage(item.number) }" /> <div class="name" data-bind="text: name">Mosh</div> <div class="number" data-bind="text: number">1</div>
 		</article>
 		<ol start="2" data-bind="foreach: { data: item.colors, as: 'color' }">
-			<li><input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $parentContext.$index, offset: $index()+1, sticker: true }" /> <img class="colors" src="" data-bind="attr: { src: serieslist.secondaryImage(item.number, $index), title: color }" /></li>
+			<li><input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $parentContext.$index, offset: $index()+1, colors: true }" /> <img class="colors" src="" data-bind="attr: { src: serieslist.secondaryImage(item.number, $index), title: color }" /></li>
 		</ol>
 	</li>
 </script>
