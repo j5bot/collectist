@@ -77,12 +77,25 @@ body {
 }
 
 .series-item-list {
+	margin-top: 40px;
 	text-align: center;
 }
 		
 .series {
 	margin: 0px;
 	padding: 0px;
+
+	h2 {
+		position: absolute;
+		top: -8px;
+		left: 0px;
+		height: 50px;
+		padding: 10px 10px 10px 40px;
+		width: 100%;
+		
+		@include border-top-radius($appborderradius - 10);
+		background-color: $seriestitlebgcolor;
+	}
 
 	h3 {
 		position: absolute;

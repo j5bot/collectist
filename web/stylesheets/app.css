@@ -1201,7 +1201,7 @@ header .logo { position: fixed; top: 10px; left: 15px; z-index: 50; }
 #menu-container { padding: 70px 0px 10px 25px; position: relative; }
 
 #menu { background-color: rgba(255, 250, 230, 0.9); text-align: right; position: fixed; left: 10px; padding: 17px 0px 10px 10px; -moz-border-radius-topleft: 20px; -webkit-border-top-left-radius: 20px; border-top-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-bottom-left-radius: 20px; border-bottom-left-radius: 20px; -webkit-box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; -moz-box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; }
-#menu li { width: 100%; padding: 0px 20px 0px 20px; border: solid 1px rgba(160, 120, 80, 0.8); border-width: 1px 0px 1px 1px; -moz-border-radius-topleft: 20px; -webkit-border-top-left-radius: 20px; border-top-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-bottom-left-radius: 20px; border-bottom-left-radius: 20px; margin: 0px 0px 5px 0px; background-color: rgba(255, 255, 255, 0.9); -webkit-box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; -moz-box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; }
+#menu li { width: 100%; padding: 3px 20px 0px 30px; border: solid 1px rgba(160, 120, 80, 0.8); border-width: 1px 0px 1px 1px; -moz-border-radius-topleft: 20px; -webkit-border-top-left-radius: 20px; border-top-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-bottom-left-radius: 20px; border-bottom-left-radius: 20px; margin: 0px 0px 5px 0px; background-color: rgba(255, 255, 255, 0.9); -webkit-box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; -moz-box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; }
 #menu li a { font-weight: bold; color: rgba(100, 60, 20, 0.8); }
 
 #app-container { padding: 20px 25px 10px 0px; }
@@ -1214,8 +1214,8 @@ header .logo { position: fixed; top: 10px; left: 15px; z-index: 50; }
 .collectist-primary { letter-spacing: 0.2em; }
 
 .collectist-secondary { font-size: 0.6em; letter-spacing: 0em; text-transform: uppercase; }
-.collectist-secondary:before { content: " /"; }
-.collectist-secondary:after { content: "/ "; }
+.collectist-secondary:before { content: " / "; }
+.collectist-secondary:after { content: " / "; }
 
 .row { max-width: 100%; }
 
@@ -1246,9 +1246,10 @@ body { background-color: #ffdd00; background-image: url(../images/bg/cardboard-r
 
 .series-menu { list-style-type: none; margin-right: -1px; }
 
-.series-item-list { text-align: center; }
+.series-item-list { margin-top: 40px; text-align: center; }
 
 .series { margin: 0px; padding: 0px; }
+.series h2 { position: absolute; top: -8px; left: 0px; height: 50px; padding: 10px 10px 10px 40px; width: 100%; -moz-border-radius-topleft: 30px; -webkit-border-top-left-radius: 30px; border-top-left-radius: 30px; -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; background-color: rgba(150, 60, 30, 0.5); }
 .series h3 { position: absolute; top: -30px; left: -20px; padding: 8px; background-color: white; border: solid 1px rgba(100, 80, 40, 0.3); -webkit-border-radius: 1000px; -moz-border-radius: 1000px; border-radius: 1000px; font-family: Helvetica, Arial, sans-serif; }
 .series a { font-size: 18px; line-height: 18px; }
 .series p { text-align: left; padding: 15px; }

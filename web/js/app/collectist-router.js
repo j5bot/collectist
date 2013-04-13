@@ -11,12 +11,13 @@ define([
 		Router: Backbone.Router.extend({
 			routes: {
 				'series/:seriesid': 'seriesRoute',
+				'series/:seriesid/:checklist/:data': 'seriesRoute',
 				'*url': 'defaultRoute'
 			},
 
-			seriesRoute: function (seriesid) {
+			seriesRoute: function (seriesid, checklist, data) {
 				require(['app/modules/checklist/main'], function (checklist) {
-					checklist(seriesid);
+					checklist(seriesid, checklist, data);
 				});
 			},
 

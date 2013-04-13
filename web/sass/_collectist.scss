@@ -12,6 +12,7 @@ $menuitemshadowcolor: rgba(160,120,80,0.8);
 $menubgcolor: rgba(255,250,230,0.9);
 $menushadowcolor: $appshadowcolor;
 
+$appborderradius: 40px;
 $menuborderradius: 20px;
 
 header {
@@ -52,7 +53,7 @@ header {
 
 	li {
 		width: 100%;
-		padding: 0px 20px 0px 20px;
+		padding: 3px 20px 0px 30px;
 		border: solid 1px $menuitemshadowcolor;
 		border-width: 1px 0px 1px 1px;
 		@include border-left-radius($menuborderradius);
@@ -74,7 +75,7 @@ header {
 	position: relative;
 	min-height: 600px;
 	background-color: $appbgcolor;
-	@include border-radius(40px);
+	@include border-radius($appborderradius);
 	@include box-shadow($appshadowcolor 0px 5px 20px);
 	border: double 12px $appbordercolor;
 }
@@ -98,9 +99,9 @@ header {
 	text-transform: uppercase;
 
 	&:before {
-		content: " /";
+		content: " / ";
 	}
 	&:after {
-		content: "/ ";
+		content: " / ";
 	}
 }

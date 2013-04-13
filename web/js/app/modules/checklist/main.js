@@ -30,10 +30,13 @@ define([
 		url: '/data/series.json'
 	});
 
-	return function (currentSeries, currentChecklist) {
+	return function (currentSeries, currentChecklist, dataString) {
 
 		if (currentSeries && app.appViewModel) {
 			app.appViewModel.current(currentSeries);
+			if (currentChecklist) {
+				app.appViewModel.checklist(currentChecklist);
+			}
 		} else {
 			series.fetch({
 				currentSeries: currentSeries,
@@ -46,6 +49,7 @@ define([
 						appViewModel = new ViewModels.App(new Backbone.Model({
 						current: currentSeries,
 						checklist: currentChecklist,
+						data: dataString,
 						series: series
 					}), {
 						factories: {

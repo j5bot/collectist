@@ -109,7 +109,7 @@ define([
 					checklist.bytes(data);
 					Backbone.sync('update', checklist.model(), {
 						success: function (model) {
-							debugger;
+							// debugger;
 							router.navigate('series/' + model.id + '/' + data.toBase64());
 						}
 					});
