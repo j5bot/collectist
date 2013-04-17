@@ -1,20 +1,13 @@
 define([], function () {
 
 	function BigBit (bytes, BYTE_SIZE) {
-		this.bytes = bytes || [];
+		this.bytes = bytes || { length: 0 };
 		this._init(BYTE_SIZE);
 	}
 	
 	// JavaScript can't do unsigned 32-bit integer bitwise operations, we have to use 31-bit integers
 	var BYTE_SIZE = 31;
 	var BYTE_SIZE_FLOAT = 31.0;
-	
-	// Convert 32-bit integer array into 32-bit character string for base64 encoding
-	function b32encode (arr) {
-		return arr.map(function (x) {
-			return String.fromCharCode(x);
-		}).join("");
-	}
 	
 	BigBit.prototype = {
 		
@@ -31,10 +24,9 @@ define([], function () {
 
 			if (bitLength <= pos) {
 				
-				// prepends a 1, which adds one new byte and a total of 32 new bit registers, with the last of the new byte set to 1
-				// e.g. 00001111 -> 0000000100001111
+				// prepends sparse array elements and sets the target byte to 0
 				if (create) {
-					this.bytes.unshift(0);
+					this.expand(pos, 0);
 				}
 
 			}
@@ -44,6 +36,15 @@ define([], function () {
 			toggleByte = this.bytes.length - Math.floor(pos / BYTE_SIZE_FLOAT) - 1;
 
 			return callback.call(this, pos, toggleByte, bitPosition);
+		},
+
+		expand: function (pos, value) {
+			var length = this.bytes.length,
+				size = Math.floor(pos / BYTE_SIZE_FLOAT) + 1;
+
+			// prepend the necessary number of elements to the array-like object
+			Array.prototype.splice.apply(this.bytes, [0, 0].concat(new Array(size - length)));
+			this.bytes[0] = value;
 		},
 		
 		length: function () {
@@ -108,9 +109,9 @@ define([], function () {
 					break;
 			}
 			
-			var resultBytes = [];
+			var resultBytes = { length: 0 };
 			for (var i = 0, l = this.bytes.length, bl = bigBit.bytes.length; i < l && i < bl; i++) {
-				resultBytes.push(operation(this.bytes[i], bytes[i]));
+				Array.prototype.push.call(resultBytes, operation(this.bytes[i], bytes[i]));
 			}
 			
 			return new BigBit(resultBytes);	
@@ -130,32 +131,76 @@ define([], function () {
 		
 		// for checklists, swap list of haves for list of wants
 		complement: function () {
-			return new BigBit(this.bytes.map(function (x) {
-				x = ~x;
-			}));
+			var bytes = { length: 0 };
+			Array.prototype.map.call(this.bytes, function (x, i, a) {
+				bytes[i] = ~x;
+			});
+			return new BigBit(bytes);
+		},
+
+		_toString: function (func) {
+			var value, encoded = [];
+
+			for (var i = 0, n = 0, l = this.bytes.length; i < l; i++) {
+				value = this.bytes[i];
+				if (value !== undefined) {
+					if (n < i - 1) {
+						encoded.push('/' + i + '/');
+					}
+					n = i;
+					encoded.push(func(value));
+				}
+			}
+			return encoded.join("");
 		},
 		
 		toString: function () {
-			return this.bytes.map(function (x) {
-				return x.toString(2);
-			}).join("");
+			return this._toString(function (x) { return x.toString(2); });
+		},
+
+		toBase32Char: function () {
+			return this._toString(function (x) { return String.fromCharCode(x); });
 		},
 		
 		toBase64: function (str) {
-			return btoa(b32encode(this.bytes));
+			return btoa(this.toBase32Char());
 		},
 		
-		fromString: function () {
-			this.bytes = str.match(/[01]{10}/g).map(function (x) {
-				return parseInt(x,2);
+		fromString: function (str) {
+			return this._fromString(str, function (arr, index) {
+				return parseInt(arr.charCodeAt(index), 2);
 			});
 		},
 
 		fromBase64: function (str) {
+			return this._fromString(str, function (arr, index) {
+				return arr.charCodeAt(index);
+			});
+		},
+
+		_fromString: function (str, func) {
+			var BYTEMAP_REGEX = /\/[0-9]+\//g,
+				decoded, bytepos = 0,
+				bytemap, bytesegment, bytesegments,
+				b, s, i, l;
+
+			this.bytes = { length: 0 };
 			if (str.length > 0) {
-				this.bytes = atob(str).match(/./g).map(function (x) {
-					return x.charCodeAt(0);
-				});
+				decoded = atob(str);
+
+				bytemap = decoded.match(BYTEMAP_REGEX);
+				bytesegments = decoded.split(BYTEMAP_REGEX);
+
+				for (b = 0, s = bytesegments.length; b < s; b++) {
+					bytesegment = bytesegments[b];
+					for (i = 0, l = bytesegment.length; i < l; i++) {
+						this.bytes[bytepos + i] = func(bytesegment, i);
+					}
+					if (bytemap && bytemap.length > b) {
+						bytepos = parseInt(bytemap[b].replace('/',''), 10);
+						this.bytes.length = bytepos + 1;
+					}
+				}
 			}
 			return this;
 		}

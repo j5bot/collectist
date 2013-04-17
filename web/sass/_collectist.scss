@@ -15,10 +15,26 @@ $menushadowcolor: $appshadowcolor;
 $appborderradius: 40px;
 $menuborderradius: 20px;
 
+@import url(http://fonts.googleapis.com/css?family=Orbitron:400,500);
+
+.row { max-width: 100%; }
+
+*, h2, h3 {
+	font-family: Orbitron, Helvetica, sans-serif;
+}
+
+body {
+	background-color: $bodybgcolor;
+	background-repeat: repeat;
+	background-image: url(/images/bg/cardboard-repeating-light.jpg);
+}
+
 header {
+	position: static;
+	height: 82px;
 	width: 100%;
 
-	line-height: 80px;
+	line-height: 22px;
 	font-size: 1.2em;
 	padding-left: 180px;
 	background-color: $navbarbgcolor;
@@ -27,6 +43,16 @@ header {
 	color: $navbartextcolor;
 
 	a {
+		display: block;
+		position: absolute;
+		width: 100%;
+		top: 28px;
+		left: 0px;
+		padding-left: 181px;
+		color: $navbartextcolor;
+		white-space: nowrap;
+	}
+	a:hover {
 		color: $navbartextcolor;
 	}
 
@@ -63,6 +89,7 @@ header {
 		@include box-shadow(inset $menuitemshadowcolor 1px 0 5px 1px);
 
 		a {
+			display: block;
 			font-weight: bold;
 			color: $menushadowcolor;
 		}
@@ -83,14 +110,14 @@ header {
 .collection-title {
 	letter-spacing: 0.2em;
 	font-size: 1.2em;
-
-	&:after {
-		content: " :: ";
-	}
 }
 
 .collectist-primary {
 	letter-spacing: 0.2em;
+
+	&.first:before {
+		content: " :: ";
+	}
 }
 
 .collectist-secondary {
@@ -104,4 +131,41 @@ header {
 	&:after {
 		content: " / ";
 	}
+}
+
+@media #{$screen} {
+	.site-title { font-size: 0.8em; }
+	header .logo { position: absolute; }
+	#menu-container { position: static; float: none; width: 100%; padding-top: 20px; }
+	#menu {
+		position: static; float: none; width: 100%;
+		li {
+			text-align: center;
+			margin-right: 10px;
+			width: auto;
+			display: inline-block;
+			@include border-right-radius($menuborderradius);
+			a { display: inline-block; }
+		}
+	}
+	#app-container { float: none; margin: auto; padding-top: 0px; padding-left: 25px; }
+	#app { float: none; }
+}
+
+@media #{$medium} {
+	.site-title { font-size: 1em; }
+	header .logo { position: fixed; }
+	#menu-container { float: left; width: 16.66667%; padding-top: 70px; }
+	#menu {
+		position: fixed; width: 16.66667%;
+		li {
+			text-align: right;
+			margin-right: 0px;
+			width: 100%;
+			display: block;
+			@include border-right-radius(0);
+			a { display: block; }
+		}
+	}
+	#app-container { float: right; width: 83.33333%; padding-top: 20px; padding-left: 0px; }
 }

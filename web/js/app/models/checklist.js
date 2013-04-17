@@ -1,14 +1,20 @@
+/**
+ * app/models/checklist.js
+ *
+ * the checklist model wraps a BigBit instance, BigBit gives you an
+ * unlimited number of binary registers stored using an integer array
+ * a string representation is available as binary and in base64
+ */
 require([
 	'backbone',
-	'underscore',
 	'namespace',
 	'bigbit'
-], function (Backbone, _, namespace, BigBit) {
+], function (Backbone, namespace, BigBit) {
 
 	namespace('org.Collectist.App.Models', {
 		Checklist: Backbone.Model.extend({
 			defaults: {
-				data: []
+				data: { length: 0 }
 			},
 
 			idAttribute: 'id',

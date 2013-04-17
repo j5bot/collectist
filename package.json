@@ -1,13 +1,16 @@
 {
   "name": "gogos.collectist.org",
   "description": "Gogos Crazy Bones :: Collectist Collector Checklist",
-  "version": "0.0.1-2",
+  "version": "0.0.1-11",
   "private": false,
   "dependencies": {
     "express": "3.1.1"
   },
   "subdomain": "j5bot-collectist",
-  "domains": ["gogos.collectist.org"],
+  "domains": [
+    "gogos.collectist.org",
+    "thewalkingdead.collectist.org"
+  ],
   "scripts": {
     "start": "node server.js"
   },

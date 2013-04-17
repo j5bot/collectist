@@ -1,13 +1,10 @@
 define([
 	'backbone',
-	'underscore',
 	'namespace',
 	'jquery',
 	'knockout',
-	'knockback',
-
-	'backbone-modelref'
-], function (Backbone, _, namespace, $, ko, kb) {
+	'knockback'
+], function (Backbone, namespace, $, ko, kb) {
 
 	namespace('org.Collectist.App.ViewModels', {
 		Series: kb.ViewModel.extend({
@@ -36,17 +33,30 @@ define([
 						return [];
 					}
 
-					return itemlist.slice(start + offset - 1, end + offset).map(
-						function (item, index, array) {
-							var colors = (item.colors ||
-								['1', '2', '3', '4', '5']).slice(0, series.colors());
+					if (series.colors) {
+						return itemlist.slice(start + offset - 1, end + offset).map(
+							function (item, index, array) {
+								var colors = (item.colors ||
+									['1', '2', '3', '4', '5']).slice(0, series.colors());
 
-							if (item['skip-color'] !== undefined) {
-								colors.splice(item['skip-color'] - 1, 1);
-							}
-							item.colors = colors;
-							return item;
-						});
+								if (item['skip-color'] !== undefined) {
+									colors.splice(item['skip-color'] - 1, 1);
+								}
+								item.colors = colors;
+								return item;
+							});
+					} else {
+						return itemlist.slice(start + offset - 1, end + offset);
+					}
+
+				}, series);
+
+				series.template = ko.computed(function () {
+					var series = this,
+						app = org.Collectist.app;
+
+					return (series.template && series.template()) ||
+						app.sitehost + '-item-template';
 
 				}, series);
 
@@ -72,7 +82,7 @@ define([
 
 			primaryImage: function (number) {
 				number = number.toString().length === 1 ? '0' + number : number;
-				return this.images() + number + '.gif';
+				return this.images() + number + ((this.imagetype && this.imagetype()) || '.gif');
 			},
 
 			secondaryImage: function (number, color) {
@@ -93,7 +103,7 @@ define([
 			},
 
 			hasStickers: function () {
-				return this.stickers && this.stickers();
+				return (this.stickers && this.stickers()) || false;
 			},
 
 			tick: function (data, event) {
@@ -111,10 +121,11 @@ define([
 					data = checklist.bytes();
 					data[checked ? 'on' : 'off'](position);
 					checklist.bytes(data);
+					checklist.data(data.bytes);
 					Backbone.sync('update', checklist.model(), {
 						success: function (model) {
-							// debugger;
-							router.navigate('series/' + model.id + '/' + data.toBase64());
+							var db64 = data.toBase64();
+							router.navigate('series/' + model.id + '/' + db64);
 						}
 					});
 				}

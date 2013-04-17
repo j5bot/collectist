@@ -6,10 +6,6 @@ define([], function () {
 				'//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery',
 				'jquery'
 			],
-			'bootstrap':	[
-				'//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap',
-				'bootstrap'
-			],
 
 			'knockback':	'knockback-core',
 
@@ -18,6 +14,7 @@ define([], function () {
 
 			// app itself
 			'app':			'../app',
+			'env':			'../env',
 
 			// data
 			'data':			'../../data',

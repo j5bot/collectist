@@ -5,7 +5,7 @@
 				<h2 data-bind="text: name">Series Name</h2>
 				<h3 data-bind="text: serieslist.count()">10</h3>
 			</div>
-			<ol class="series-item-list" data-bind="template: { name: 'item-template', foreach: itemsection, as: 'item' }"></ol>
+			<ol class="series-item-list" data-bind="template: { name: serieslist.template(), foreach: itemsection, as: 'item' }"></ol>
 		</div>
 	</article>
 </script>
@@ -16,14 +16,48 @@
 	</ul>
 </script>
 
-<script type="text/template" id="item-template">
+<script type="text/template" id="gogos-item-template">
 	<li class="series-item-list-item">
 		<article class="base">
-			<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index }" /> <input type="checkbox" class="sticker" data-bind="seriesitem: { serieslist: serieslist, index: $index, offset: 1, sticker: true }" /><img class="main-image" src="" data-bind="attr: { src: serieslist.primaryImage(item.number) }" /> <div class="name" data-bind="text: name">Mosh</div> <div class="number" data-bind="text: number">1</div>
+			<label>
+				<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index }" /><i class="custom-checkbox"></i><img class="main-image" src="" data-bind="attr: { src: serieslist.primaryImage(item.number) }" /> <div class="number" data-bind="text: number">1</div>
+			</label>
+			<label>
+				<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index, offset: 1, sticker: true }" /><i class="sticker custom-checkbox"></i>
+				<div class="name" data-bind="text: name">Mosh</div>
+			</label>
 		</article>
-		<ol start="2" data-bind="foreach: { data: item.colors, as: 'color' }">
-			<li><input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $parentContext.$index, offset: $index()+1, colors: true }" /> <img class="colors" src="" data-bind="attr: { src: serieslist.secondaryImage(item.number, $index), title: color }" /></li>
+		<ol class="series-sub-list" start="2" data-bind="foreach: { data: item.colors, as: 'color' }">
+			<li class="series-sub-list-item"><label><input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $parentContext.$index, offset: $index()+1, colors: true }" /><i class="custom-checkbox"></i> <img class="colors" src="" data-bind="attr: { src: serieslist.secondaryImage(item.number, $index), title: color }" /></label></li>
 		</ol>
+	</li>
+</script>
+
+<script type="text/template" id="gogos-nocolors-item-template">
+	<li class="series-item-list-item nocolors-item">
+		<article class="base">
+			<label>
+				<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index }" /><i class="custom-checkbox"></i><img class="main-image" src="" data-bind="attr: { src: serieslist.primaryImage(item.number) }" /> <div class="number" data-bind="text: number">1</div>
+			</label>
+			<label>
+				<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index, offset: 1, sticker: true }" /><i class="sticker custom-checkbox"></i>
+				<div class="name" data-bind="text: name">Mosh</div>
+			</label>
+		</article>
+	</li>
+</script>
+
+<script type="text/template" id="thewalkingdead-item-template">
+	<li class="series-item-list-item">
+		<article class="base">
+			<label>
+				<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index }" /><i class="custom-checkbox"></i><img class="main-image" src="" data-bind="attr: { src: serieslist.primaryImage(item.number) }" /> <div class="number" data-bind="text: number">1</div>
+			</label>
+			<label>
+				<input type="checkbox" data-bind="seriesitem: { serieslist: serieslist, index: $index, offset: 1, sticker: true }" /><i class="sticker custom-checkbox"></i>
+				<div class="name" data-bind="text: name">Mosh</div>
+			</label>
+		</article>
 	</li>
 </script>
 

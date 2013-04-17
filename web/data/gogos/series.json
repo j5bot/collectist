@@ -20,7 +20,8 @@
 			"prefix": "s1w",
 			"start": 1,
 			"end": 20,
-			"offset": 80
+			"offset": 80,
+			"template": "gogos-nocolors-item-template"
 		},
 		{
 			"id": "series-2-evolution",
@@ -53,7 +54,8 @@
 			"prefix": "le",
 			"start": 1,
 			"end": 31,
-			"offset": 180
+			"offset": 180,
+			"template": "gogos-nocolors-item-template"
 		},
 		{
 			"id": "c1000-football",
@@ -65,7 +67,8 @@
 			"prefix": "vb",
 			"start": 1,
 			"end": 90,
-			"offset": 292			
+			"offset": 292,
+			"template": "gogos-nocolors-item-template"			
 		}
 	]
 }

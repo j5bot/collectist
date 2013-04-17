@@ -1,12 +1,15 @@
+/**
+ * app/viewmodels/app.js
+ *
+ * the app viewmodel is responsible for loading the templates
+ * into the page and is the container for series
+ */
 define([
-	'backbone',
-	'underscore',
 	'namespace',
 	'jquery',
-	'knockout',
 	'knockback',
 	'text!templates/checklist.html'
-], function (Backbone, _, namespace, $, ko, kb, templateMarkup) {
+], function (namespace, $, kb, templateMarkup) {
 
 	namespace('org.Collectist.App.ViewModels', {
 		App: kb.ViewModel.extend({

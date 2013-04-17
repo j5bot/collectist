@@ -1,9 +1,8 @@
 define([
 	'backbone',
-	'underscore',
 	'namespace',
 	'app/models/series'
-], function (Backbone, _, namespace) {
+], function (Backbone, namespace) {
 
 	namespace('org.Collectist.App.Collections', {
 

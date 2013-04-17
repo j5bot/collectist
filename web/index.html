@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<title>Gogos Crazy Bones :: Collect/ist Collect/or Checkl/ist</title>
+		<title>COLLECT / or checkl / IST</title>
 		
 		<link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="/stylesheets/app.css" />
@@ -15,14 +15,14 @@
 	<body>
 		<header>
 			<img class="logo" alt="Collectist Logo" src="/images/logo.png" />
-			<a class="site-title"><span class="collection-title">GOGOs CRAZY BONES</span> <span class="collectist-primary">COLLECT</span><span class="collectist-secondary">or checkl</span><span class="collectist-primary">IST</span></a>
+			<a class="site-title"><span data-bind="text: title" class="collection-title"></span> <wbr/><span class="collectist-primary first">COLLECT</span><span class="collectist-secondary">or checkl</span><span class="collectist-primary">IST</span></a>
 		</header>
 
 		<div class="row">
-			<div id="menu-container" class="columns large-2 small-4">
-				<section class="panel columns large-2 small-4" id="menu"></section>
+			<div id="menu-container">
+				<section class="panel" id="menu"></section>
 			</div>
-			<div id="app-container" class="columns large-10 small-8">
+			<div id="app-container">
 				<section class="panel" id="app"></section>
 			</div>
 		</div>

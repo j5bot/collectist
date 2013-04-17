@@ -1,8 +1,12 @@
+/**
+ * app/models/itemlist.js
+ *
+ * a list of items which are part of a series, corresponding to checklists
+ */
 require([
 	'backbone',
-	'underscore',
 	'namespace'
-], function (Backbone, _, namespace) {
+], function (Backbone, namespace) {
 
 	namespace('org.Collectist.App.Models', {
 		ItemList: Backbone.Model.extend({
@@ -13,7 +17,8 @@ require([
 				this.fetch();
 			},
 			url: function () {
-				return '/data/' + (this.get('source') || 'items') + '.json';
+				return '/data/' + this.get('site') +
+					'/' + (this.get('source') || 'items') + '.json';
 			}
 		})
 	});

@@ -1,13 +1,7 @@
 define([
-	'backbone',
-	'underscore',
 	'namespace',
-	'jquery',
-	'knockout',
-	'knockback',
-
-	'backbone-modelref'
-], function (Backbone, _, namespace, $, ko, kb) {
+	'knockback'
+], function (namespace, kb) {
 
 	namespace('org.Collectist.App.ViewModels', {
 		Checklist: kb.ViewModel.extend({
