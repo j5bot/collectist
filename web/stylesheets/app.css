@@ -1069,18 +1069,46 @@ table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoo
 
 .row { max-width: 100%; }
 
-*, h2, h3 { font-family: Orbitron, Helvetica, sans-serif; }
-
-body { background-color: #ffdd00; background-repeat: repeat; background-image: url(/images/bg/cardboard-repeating-light.jpg); }
+#application { background-color: #ffdd00; background-repeat: repeat; background-image: url(/images/bg/cardboard-repeating-light.jpg); }
+#application *, #application h2, #application h3 { font-family: Orbitron, Helvetica, sans-serif; }
 
 header { position: static; height: 82px; width: 100%; line-height: 22px; font-size: 1.2em; padding-left: 180px; background-color: #fce3cd; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(62%, #fce3cd), color-stop(100%, #ffc97f)); background-image: -webkit-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: -moz-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: -o-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: linear-gradient(top, #fce3cd 62%, #ffc97f 100%); color: black; }
-header a { display: block; position: absolute; width: 100%; top: 28px; left: 0px; padding-left: 181px; color: black; white-space: nowrap; }
-header a:hover { color: black; }
+header > a { display: block; position: absolute; width: 100%; top: 28px; left: 0px; padding-left: 181px; color: black; white-space: nowrap; }
+header > a:hover { color: black; }
+header .make-link { display: none; position: absolute; top: 0px; left: 180px; width: 100px; cursor: pointer; }
 header .logo { position: fixed; top: 10px; left: 15px; z-index: 50; }
 
-#menu-container { padding: 70px 0px 10px 25px; position: relative; }
+footer { background-color: #fce3cd; color: black; font-size: 0.75em; margin-bottom: 0px; padding: 5px; text-align: center; }
 
-#menu { background-color: rgba(255, 250, 230, 0.9); text-align: right; position: fixed; left: 10px; padding: 17px 0px 10px 10px; -moz-border-radius-topleft: 20px; -webkit-border-top-left-radius: 20px; border-top-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-bottom-left-radius: 20px; border-bottom-left-radius: 20px; -webkit-box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; -moz-box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; }
+#addthis_login_toolbox { position: absolute; top: -10px; right: 20px; z-index: 51; }
+#addthis_login_toolbox > a { display: inline-block; }
+#addthis_login_toolbox .ssi-button { background-image: none; width: 92px; height: 52px; float: none; display: inline-block; }
+
+#addthis_login_facebook { background-image: url(/images/facebook-connect.png); background-repeat: no-repeat; width: 89px; height: 52px; }
+
+#addthis_login_google { background-image: url(/images/google-connect.png); width: 89px; height: 50px; }
+
+.share-container { position: fixed; top: 140px; left: 0px; width: 16.6667%; z-index: 51; }
+
+#addthis_share_toolbox { text-align: right; }
+#addthis_share_toolbox > a { float: none; display: inline-block; padding-left: 0px; padding-bottom: 0px; }
+#addthis_share_toolbox > a:last-of-type span { margin-right: 0px; }
+
+.walkthrough { display: none; position: absolute; z-index: 51; cursor: pointer; max-width: 10000px; }
+
+#login-pow { top: 30px; right: 100px; }
+
+#checklist-arrow { top: 300px; left: 50%; margin-left: -125px; margin-top: -143px; }
+
+#share-bubble { top: 0px; right: -170px; }
+
+.atm-f { height: 24px !important; }
+
+#at_auth { height: auto; line-height: auto; }
+
+#menu-container { padding: 75px 0px 10px 25px; position: relative; }
+
+#menu { background-color: rgba(255, 250, 230, 0.9); text-align: right; position: fixed; left: 10px; padding: 27px 0px 10px 10px; -moz-border-radius-topleft: 20px; -webkit-border-top-left-radius: 20px; border-top-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-bottom-left-radius: 20px; border-bottom-left-radius: 20px; -webkit-box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; -moz-box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; box-shadow: rgba(100, 60, 20, 0.8) 0px 10px 15px; }
 #menu li { width: 100%; padding: 3px 20px 0px 30px; border: solid 1px rgba(160, 120, 80, 0.8); border-width: 1px 0px 1px 1px; -moz-border-radius-topleft: 20px; -webkit-border-top-left-radius: 20px; border-top-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-bottom-left-radius: 20px; border-bottom-left-radius: 20px; margin: 0px 0px 5px 0px; background-color: rgba(255, 255, 255, 0.9); -webkit-box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; -moz-box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; box-shadow: inset rgba(160, 120, 80, 0.8) 1px 0 5px 1px; }
 #menu li a { display: block; font-weight: bold; color: rgba(100, 60, 20, 0.8); }
 
@@ -1099,14 +1127,23 @@ header .logo { position: fixed; top: 10px; left: 15px; z-index: 50; }
 
 @media only screen { .site-title { font-size: 0.8em; }
   header .logo { position: absolute; }
+  .login-container { position: relative; top: 0px; height: 52px; margin-bottom: -42px; width: 100%; text-align: right; }
+  #addthis_login_toolbox { background-color: rgba(255, 250, 240, 0.95); padding: 4px; width: 196px; border: solid 3px rgba(100, 80, 40, 0.3); border-radius: 8px; }
+  .share-container { position: absolute; top: 300px; left: 20px; width: 40px; }
+  #share-bubble { right: 30px; left: 30px; }
   #menu-container { position: static; float: none; width: 100%; padding-top: 20px; }
   #menu { position: static; float: none; width: 100%; }
-  #menu li { text-align: center; margin-right: 10px; width: auto; display: inline-block; -moz-border-radius-topright: 20px; -webkit-border-top-right-radius: 20px; border-top-right-radius: 20px; -moz-border-radius-bottomright: 20px; -webkit-border-bottom-right-radius: 20px; border-bottom-right-radius: 20px; }
+  #menu li { text-align: center; margin-right: 15px; width: auto; display: inline-block; -moz-border-radius-topright: 20px; -webkit-border-top-right-radius: 20px; border-top-right-radius: 20px; -moz-border-radius-bottomright: 20px; -webkit-border-bottom-right-radius: 20px; border-bottom-right-radius: 20px; }
   #menu li a { display: inline-block; }
-  #app-container { float: none; margin: auto; padding-top: 0px; padding-left: 25px; }
+  #app-container { float: none; margin: auto; padding-top: 0px; padding-left: 35px; }
   #app { float: none; } }
 @media only screen and (min-width: 80em) { .site-title { font-size: 1em; }
   header .logo { position: fixed; }
+  .login-container { width: auto; position: static; margin-bottom: 0px; top: auto; height: 0px; }
+  #addthis_login_toolbox { position: absolute; top: -10px; margin-bottom: 0px; left: auto; background-color: transparent; border-width: 0px; }
+  .share-container { position: fixed; top: 140px; left: 0px; width: 16.66667%; }
+  #share-bubble { left: 0px; right: -170px; }
+  #addthis_share_toolbox { margin-right: 10px; }
   #menu-container { float: left; width: 16.66667%; padding-top: 70px; }
   #menu { position: fixed; width: 16.66667%; }
   #menu li { text-align: right; margin-right: 0px; width: 100%; display: block; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0; border-top-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0; border-bottom-right-radius: 0; }
@@ -1124,7 +1161,7 @@ p { font-size: 10px; font-family: Helvetica,sans-serif; }
 
 .series { margin: 0px; padding: 0px; }
 .series h2 { position: absolute; top: -8px; left: 0px; height: 50px; padding: 10px 10px 10px 40px; width: 100%; -moz-border-radius-topleft: 30px; -webkit-border-top-left-radius: 30px; border-top-left-radius: 30px; -moz-border-radius-topright: 30px; -webkit-border-top-right-radius: 30px; border-top-right-radius: 30px; background-color: rgba(150, 60, 30, 0.5); color: #fff; }
-.series h3 { position: absolute; top: -30px; left: -20px; padding: 8px; background-color: white; border: solid 1px rgba(100, 80, 40, 0.3); -webkit-border-radius: 1000px; -moz-border-radius: 1000px; border-radius: 1000px; font-family: Helvetica, Arial, sans-serif; }
+.series h3 { position: absolute; top: -30px; left: -20px; padding: 12px 8px 6px; background-color: white; border: solid 1px rgba(100, 80, 40, 0.3); -webkit-border-radius: 1000px; -moz-border-radius: 1000px; border-radius: 1000px; font-family: Helvetica, Arial, sans-serif; }
 .series a { font-size: 18px; line-height: 18px; }
 .series p { text-align: left; padding: 15px; }
 .series ol { padding: 0px !important; }

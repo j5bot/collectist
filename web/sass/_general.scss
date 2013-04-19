@@ -43,7 +43,7 @@ p {
 		position: absolute;
 		top: -30px;
 		left: -20px;
-		padding: 8px;
+		padding: 12px 8px 6px;
 		background-color: $seriescountbgcolor;
 		border: solid 1px $seriescountbordercolor;
 		@include border-radius(1000px);

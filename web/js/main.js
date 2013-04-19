@@ -14,13 +14,19 @@
  */
 define('main', [
 	'backbone',
+	'underscore',
 	'namespace',
 	'env/app-config',
 	'app/collectist-router'
-], function (Backbone, namespace, config, Router) {
+], function (Backbone, _, namespace, config, Router) {
 
 	// create and namespace the application object
-	var app = {};
+	var app = _.extend({
+		login: function (user) {
+			this.loggedInUser = user;
+		}
+	}, Backbone.Events);
+
 	namespace('org.Collectist', {
 		app: app
 	});

@@ -2,9 +2,9 @@ define([], function () {
 
 	function BigBit (bytes, BYTE_SIZE) {
 		this.bytes = bytes || { length: 0 };
-		this._init(BYTE_SIZE);
+		this._init(BYTE_SIZE || 8);
 	}
-	
+
 	// JavaScript can't do unsigned 32-bit integer bitwise operations, we have to use 31-bit integers
 	var BYTE_SIZE = 31;
 	var BYTE_SIZE_FLOAT = 31.0;
@@ -173,32 +173,30 @@ define([], function () {
 		},
 
 		fromBase64: function (str) {
-			return this._fromString(str, function (arr, index) {
+			return this._fromString(atob(str), function (arr, index) {
 				return arr.charCodeAt(index);
 			});
 		},
 
 		_fromString: function (str, func) {
 			var BYTEMAP_REGEX = /\/[0-9]+\//g,
-				decoded, bytepos = 0,
-				bytemap, bytesegment, bytesegments,
+				bytepos = 0, bytemap, bytesegment, bytesegments,
 				b, s, i, l;
 
 			this.bytes = { length: 0 };
 			if (str.length > 0) {
-				decoded = atob(str);
-
-				bytemap = decoded.match(BYTEMAP_REGEX);
-				bytesegments = decoded.split(BYTEMAP_REGEX);
+				bytemap = str.match(BYTEMAP_REGEX);
+				bytesegments = str.split(BYTEMAP_REGEX);
 
 				for (b = 0, s = bytesegments.length; b < s; b++) {
 					bytesegment = bytesegments[b];
 					for (i = 0, l = bytesegment.length; i < l; i++) {
 						this.bytes[bytepos + i] = func(bytesegment, i);
+						this.bytes.length++;
 					}
 					if (bytemap && bytemap.length > b) {
 						bytepos = parseInt(bytemap[b].replace('/',''), 10);
-						this.bytes.length = bytepos + 1;
+						this.bytes.length = bytepos;
 					}
 				}
 			}

@@ -4,58 +4,65 @@
  * read/write collection URLs
  **/
 define([
+	'backbone',
 	'bigbit'
-], function (BigBit) {
+], function (Backbone, BigBit) {
 
-	function makeCollection(series, value) {
+	function makeCollection(checklists, series, value) {
 
-		var arrCollectionSegments = value.split('.'),
-			kvCollectionSegments = {},
+		var id = series.get('id'),
+			segments = value.match(new RegExp(id + '\\.[^.]*\\.[^.]*')),
 			segment, checklist, bytes;
 
-		// convert from array into key value pairs
-		if (arrCollectionSegments.length % 3 === 0) {
-			for (var i = 0, l = arrCollectionSegments.length; i < l; i += 3) {
-				kvCollectionSegments[arrCollectionSegments[i]] = {
-					series: arrCollectionSegments[i],
-					checklist: arrCollectionSegments[i + 1],
-					data: arrCollectionSegments[i + 2]
-				};
+		if (segments && segments.length > 0) {
+			for (var i = 0, l = segments.length; i < l; i++) {
+				// console.log(segments[i]);
+				segment = segments[i].split('.');
+				checklist = checklists.get(segment[0] + '/' + segment[1]);
+				if (!checklist) {
+					checklist = checklists.create({ id: segment[0] + '/' + segment[1] });
+				}
+				bytes = new BigBit();
+				bytes.fromBase64(segment[2]);
+				checklist.set({ data: bytes.bytes, bytes: bytes });
+				Backbone.sync('update', checklist);
 			}
+			Backbone.Events.trigger('loaded:collectist', {
+				url: stringifyCollection(checklists)
+			});
 		}
-
-		_.each(series, function (series, index, collection) {
-			if (kvCollectionSegments[series.prefix]) {
-				segment = kvCollectionSegments[series.prefix];
-				checklist = series.get(segment.series).get('checklists').get(segment.checklist);
-				bytes = new BigBit([], 8);
-				bytes.fromBase64(segment.data);
-				checklist.bytes(bytes);
-			}
-		});
 
 	}
 
-	function stringifyCollection(series) {
-		_.each(series, function (series, index, collection) {
+	function stringifyCollection(checklists) {
+		var collectist = checklists.reduce(function (memo, checklist, key, list) {
+				var bytes = checklist.get('bytes'),
+					id = checklist.get('id').replace('/', '.');
 
-		});
+				if (bytes && bytes.length && bytes.length() > 0) {
+					memo.push(id + '.' + bytes.toBase64());
+				}
+				return memo;
+
+			}, []).join('.');
+
+		return collectist;
 	}
 
 	/**
 	 * transformer module
-	 * 
+	 *
 	 * @param  {String} value when value is specified, a collection of checklists
 	 *                        will be returned matching with the value
 	 * @return {String}       a partial URL representing all series and checklists in the
 	 *                        current app
 	 */
-	return function (series, value) {
+	return function (checklists, value) {
 
 		if (value !== undefined) {
-			return makeCollection(series, value);
+			return makeCollection(checklists, this, value);
 		} else {
-			return stringifyCollection(series);
+			return stringifyCollection(this);
 		}
 
 	};

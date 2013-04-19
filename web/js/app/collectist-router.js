@@ -18,38 +18,41 @@ define([
 				/**
 				 * handle all clicks on A elements by delegating to the router
 				 */
+				var app = org.Collectist.app;
+
 				$(document).delegate('a', 'click', function (event) {
 				    var href = $(this).attr('href');
 				    var protocol = this.protocol + '//';
 
 				    // Ensure the protocol is not part of URL, meaning its relative.
 				    // Stop the event bubbling to ensure the link will not cause a page refresh.
-				    if (href.slice(protocol.length) !== protocol) {
+				    if (href && (href.slice(0, protocol.length) !== protocol)) {
 						event.preventDefault();
-						org.Collectist.app.router.navigate(href, true);
+						if (!app.guest) {
+							app.router.navigate(href, true);
+						} else {
+							app.appViewModel.current(href.split('/',3)[2]);
+						}
 					}
 				});
 			},
 
 			routes: {
-				'collectist/:userref/:collection': 'collectistRoute',
+				'collectist/:user/*collectist': 'collectistRoute',
 				'series/:seriesid': 'seriesRoute',
 				'series/:seriesid/:checklist/:data': 'seriesRoute',
 				'*url': 'defaultRoute'
 			},
 
-			collectistRoute: function (userref, collection) {
-				var site = this.sitehost;
+			collectistRoute: function (user, collectist) {
 				require(['app/modules/checklist/main'], function (checklistModule) {
-					checklistModule({ site: site, user: userref, collection: collection });
+					checklistModule({ user: user, collectist: collectist });
 				});
 			},
 
 			seriesRoute: function (seriesid, checklist, data) {
-				var site = this.sitehost;
 				require(['app/modules/checklist/main'], function (checklistModule) {
 					checklistModule({
-						site: site,
 						seriesid: seriesid,
 						checklist: checklist,
 						data: data
@@ -59,8 +62,8 @@ define([
 
 			defaultRoute: function (url) {
 				var site = this.sitehost;
-				require(['app/modules/checklist/main'], function (checklist) {
-					checklist({ site: site });
+				require(['app/modules/checklist/main'], function (checklistModule) {
+					checklistModule();
 				});
 			},
 

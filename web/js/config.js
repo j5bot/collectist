@@ -20,6 +20,9 @@ define('env-config', [
 			'backbone': {
 				deps: ['underscore', 'jquery'],
 				exports: 'Backbone'
+			},
+			'addthis': {
+				exports: 'addthis'
 			}
 		}
 	});

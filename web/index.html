@@ -13,19 +13,40 @@
 		<script src="/js/lib/custom.modernizr.js"></script>
 	</head>
 	<body>
-		<header>
-			<img class="logo" alt="Collectist Logo" src="/images/logo.png" />
-			<a class="site-title"><span data-bind="text: title" class="collection-title"></span> <wbr/><span class="collectist-primary first">COLLECT</span><span class="collectist-secondary">or checkl</span><span class="collectist-primary">IST</span></a>
-		</header>
+		<section id="application">
+			<header>
+				<img class="logo" alt="Collectist Logo" src="/images/logo.png" />
+				<a class="site-title"><span data-bind="text: title" class="collection-title"></span> <wbr/><span class="collectist-primary first">COLLECT</span><span class="collectist-secondary">or checkl</span><span class="collectist-primary">IST</span></a>
+				<a class="make-link" data-bind="click: makeLink">make link</a>
+			</header>
 
-		<div class="row">
-			<div id="menu-container">
-				<section class="panel" id="menu"></section>
+			<div class="row">
+				<div id="menu-container">
+					<section class="panel" id="menu"></section>
+				</div>
+				<div id="app-container">
+					<div class="login-container">
+						<div class="addthis_toolbox" id="addthis_login_toolbox">
+							<a class="addthis_login_facebook" id="addthis_login_facebook"></a>
+							<a class="addthis_login_google" id="addthis_login_google"></a>
+						</div>
+						<img class="walkthrough walkthrough-step1" id="login-pow" src="/images/walkthrough/login-pow.png" alt="LOGIN!" />
+					</div>
+					<div class="share-container">
+						<div class="addthis_toolbox addthis_default_style addthis_32x32_style" id="addthis_share_toolbox" data-bind="addthistoolbox: { url: makeLink, title: title, buttons: [1,2,3,4,'compact'] }">
+						</div>
+						<img class="walkthrough walkthrough-step3" id="share-bubble" src="/images/walkthrough/share-bubble.png" alt="SHARE!" />
+					</div>
+					<section class="panel" id="app">
+						<img class="walkthrough walkthrough-step2" id="checklist-arrow" src="/images/walkthrough/checklist-arrow.png" alt="CHECKLIST" />
+					</section>
+				</div>
 			</div>
-			<div id="app-container">
-				<section class="panel" id="app"></section>
-			</div>
-		</div>
+		</section>
+
+		<footer>
+			<p>Images courtesy of product owner / their respective copyright holders.  Site design and code &copy jonathan 'j5' cook @ collectist</a>
+		</footer>
 		
 		<section id="templates"></section>
 

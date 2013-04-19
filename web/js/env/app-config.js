@@ -4,10 +4,13 @@
  * Define the application configuration module, which loads the
  * application's configuration JSON file, extends the app object
  * and updates elements in the page head (title and a new stylesheet)
+ * also bootstraps the addthis module
  */
 define([
-	'jquery'
-], function ($) {
+	'jquery',
+	'app/modules/addthis',
+	'app/modules/checklist/walkthrough'
+], function ($, addthisModule, walkthrough) {
 
 	/**
 	 * return the module as a function
@@ -22,14 +25,25 @@ define([
 
 		/**
 		 * update things in the head of the document: the title and
-		 * optional application stylesheet
+		 * optional application stylesheet, also addthis toolbox
 		 *
 		 * @param  {Object} response the JSON response received
 		 * @param  {String} status   server response code
 		 * @param  {jqXHR}  xhr      jqXHR object for the request
 		 */
-		function updateHead(response, status, xhr) {
-			$.extend(app, response);
+		function updatePage(response, status, xhr) {
+
+			function hideWalkthrough () {
+				window.localStorage.setItem('hide-walkthrough', true);
+			}
+
+			function showWalkthrough () {
+				if (window.localStorage.getItem('hide-walkthrough') !== true) {
+					walkthrough(hideWalkthrough);
+				}
+			}
+
+			$.extend(app, response, { walkthrough: walkthrough });
 
 			// TODO: move into a separate location somewhere
 			$('title').html(app.title + ' :: COLLECT / or checkl / IST');
@@ -37,6 +51,10 @@ define([
 				$('head').
 				append('<link rel="stylesheet" type="text/css" href="' + app.stylesheet + '" />');
 			}
+
+			addthisModule.init(app, '.addthis_toolbox');
+
+			showWalkthrough();
 		}
 
 		// load the app config for this site
@@ -44,7 +62,7 @@ define([
 			url: '/data/' + app.sitehost + '/config.json',
 			type: 'get',
 			contentType: 'application/json',
-			success: updateHead
+			success: updatePage
 		});
 	};
 

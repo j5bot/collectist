@@ -21,7 +21,8 @@ define([
 	'app/viewmodels/itemlist',
 
 	// custom knockout bindings used by the module
-	'app/bindings/series'
+	'app/bindings/series',
+	'app/bindings/addthis'
 ], function (Backbone, namespace, ko) {
 	// import-like references to namespaced 'classes'
 	// and objects
@@ -43,15 +44,14 @@ define([
 	 */
 	return function (params) {
 		// set the guest option based on whether we have a whole collection in the URL
-		params.guest = !!params.collection;
+		params = params || {};
+		app.guest = params.guest = !!params.collectist;
+		app.checklist = { params: params };
 
 		// checklist source collection
 		series = new Collections.Series(null, {
 			model: Models.Series,
-			url: '/data/' + app.sitehost + '/series.json',
-			guest: params.guest,
-			user: params.user,
-			collection: params.collection
+			url: '/data/' + app.sitehost + '/series.json'
 		});
 
 		/**
@@ -70,7 +70,7 @@ define([
 
 				user: params.user,
 				guest: params.guest,
-				collection: params.collection,
+				collectist: params.collectist,
 
 				series: params.seriesid,
 				checklist: params.checklist,
@@ -80,7 +80,7 @@ define([
 					// determine the proper series, checklist, and data properties
 					// for the viewmodel
 					options.series = options.series || series.at(0).get('id');
-					options.checklist = options.currentChecklist ||
+					options.checklist = options.checklist ||
 						series.at(0).get('checklists').at(0).id.split('/').pop() ||
 						options.series + '/have';
 					options.data = options.data ||
@@ -93,7 +93,7 @@ define([
 
 						guest: options.guest,
 						user: options.user,
-						collection: options.collection,
+						collectist: options.collectist,
 
 						current: options.series,
 
@@ -113,12 +113,13 @@ define([
 
 					// TODO: can we get this from the inbound route to handle both
 					// cases with the same code?
-					if (options.guest) {
-						router.navigate('/collectist/:user/:collection', false, options);
-					} else {
-						// set the URL to reflect the current app state
-						router.navigate('/series/:series/:checklist/:data', false, options);
-					}
+					// if (options.guest) {
+					// 	debugger;
+					// 	router.navigate('/collectist/:user/:collectist', false, options);
+					// } else {
+					// 	// set the URL to reflect the current app state
+					// 	router.navigate('/series/:series/:checklist/:data', false, options);
+					// }
 
 					// append markup for the app and the menu
 					$('#app').append($('#main-template').html());
@@ -126,6 +127,7 @@ define([
 
 					// apply knockout bindings for the header, menu, and app
 					ko.applyBindings.$(appViewModel, 'header', true);
+					ko.applyBindings.$(appViewModel, '.share-container', true);
 
 					ko.applyBindings.$(appViewModel, '#menu', true);
 					ko.applyBindings.$(appViewModel, '#app', true);

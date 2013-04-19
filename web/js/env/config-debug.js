@@ -7,6 +7,8 @@ define([], function () {
 				'jquery'
 			],
 
+			'addthis': '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-516ee21b753d90e0',
+
 			'knockback':	'knockback-core',
 
 			// app framework

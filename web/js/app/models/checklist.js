@@ -21,6 +21,12 @@ require([
 
 			initialize: function () {
 				this.set('bytes', new BigBit(this.get('data'), 8));
+				this.on('change:bytes', this.bytesChanged);
+			},
+
+			bytesChanged: function (event) {
+				var app = org.Collectist.app;
+				app.trigger('change:bytes', event);
 			}
 		})
 	});

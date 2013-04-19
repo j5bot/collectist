@@ -15,6 +15,7 @@ define([
 	namespace('org.Collectist.App.Models', {
 
 		Series: Backbone.Model.extend({
+			transformer: transformer,
 			idAttribute: 'id',
 			initialize: function () {
 				// load localStorage data for checklists
@@ -32,16 +33,15 @@ define([
 					site: app.sitehost
 				}) });
 
-				debugger;
-
 				series.set({ 'checklist': 'have' });
 
 				series.set({ 'checklists': new Collections.Checklist([], {
 					localStorage: new Backbone.LocalStorage(
-						this.get('guest') ? this.get('user') : 'checklist'),
+						app.guest ? app.checklist.params.user : 'checklist'),
 					model: org.Collectist.App.Models.Checklist,
 					series: series,
-					site: app.sitehost
+					site: app.sitehost,
+					params: app.checklist.params
 				}) });
 
 				series.get('checklists').fetch();

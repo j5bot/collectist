@@ -107,7 +107,8 @@ define([
 			},
 
 			tick: function (data, event) {
-				var router = org.Collectist.app.router,
+				var app = org.Collectist.app,
+					router = app.router,
 					target = event.target,
 					$target = $(target),
 					context = ko.contextFor(target),
@@ -124,8 +125,8 @@ define([
 					checklist.data(data.bytes);
 					Backbone.sync('update', checklist.model(), {
 						success: function (model) {
-							var db64 = data.toBase64();
-							router.navigate('series/' + model.id + '/' + db64);
+							// var db64 = data.toBase64();
+							// router.navigate('series/' + model.id + '/' + db64);
 						}
 					});
 				}
@@ -136,9 +137,16 @@ define([
 			tock: function (index, offset, checkStickers) {
 				var checklist = this.getChecklist(),
 					position = this.index(index, offset, checkStickers),
-					data = checklist !== null ? checklist.bytes() : null;
+					data = checklist !== null ? checklist.bytes() : null,
+					result;
 
-				return data !== null ? data.read(position) : false;
+				result = data !== null ? data.read(position) : false;
+				if (checklist) {
+					// console.log((checklist.id && checklist.id()) +
+					// 	': ' + position + ', ' + result + ', data: ' +
+					// 	JSON.stringify(data.bytes));
+				}
+				return result;
 			}
 		})
 	});
