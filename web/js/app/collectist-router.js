@@ -62,9 +62,14 @@ define([
 
 			defaultRoute: function (url) {
 				var site = this.sitehost;
-				require(['app/modules/checklist/main'], function (checklistModule) {
-					checklistModule();
-				});
+
+				if (site !== 'www') {
+					require(['app/modules/checklist/main'], function (checklistModule) {
+						checklistModule();
+					});
+				} else {
+					debugger;
+				}
 			},
 
 			/**

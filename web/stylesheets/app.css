@@ -1072,15 +1072,15 @@ table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoo
 #application { background-color: #ffdd00; background-repeat: repeat; background-image: url(/images/bg/cardboard-repeating-light.jpg); }
 #application *, #application h2, #application h3 { font-family: Orbitron, Helvetica, sans-serif; }
 
-header { position: static; height: 82px; width: 100%; line-height: 22px; font-size: 1.2em; padding-left: 180px; background-color: #fce3cd; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(62%, #fce3cd), color-stop(100%, #ffc97f)); background-image: -webkit-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: -moz-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: -o-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: linear-gradient(top, #fce3cd 62%, #ffc97f 100%); color: black; }
-header > a { display: block; position: absolute; width: 100%; top: 28px; left: 0px; padding-left: 181px; color: black; white-space: nowrap; }
+header { position: static; min-height: 82px; width: 100%; line-height: 22px; font-size: 1.2em; padding-left: 180px; background-color: #fce3cd; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(62%, #fce3cd), color-stop(100%, #ffc97f)); background-image: -webkit-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: -moz-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: -o-linear-gradient(top, #fce3cd 62%, #ffc97f 100%); background-image: linear-gradient(top, #fce3cd 62%, #ffc97f 100%); color: black; }
+header > a { display: block; padding-top: 28px; color: black; }
 header > a:hover { color: black; }
 header .make-link { display: none; position: absolute; top: 0px; left: 180px; width: 100px; cursor: pointer; }
 header .logo { position: fixed; top: 10px; left: 15px; z-index: 50; }
 
 footer { background-color: #fce3cd; color: black; font-size: 0.75em; margin-bottom: 0px; padding: 5px; text-align: center; }
 
-#addthis_login_toolbox { position: absolute; top: -10px; right: 20px; z-index: 51; }
+#addthis_login_toolbox { position: absolute; top: -10px; right: 20px; z-index: 51; text-align: center; }
 #addthis_login_toolbox > a { display: inline-block; }
 #addthis_login_toolbox .ssi-button { background-image: none; width: 92px; height: 52px; float: none; display: inline-block; }
 
@@ -1093,6 +1093,7 @@ footer { background-color: #fce3cd; color: black; font-size: 0.75em; margin-bott
 #addthis_share_toolbox { text-align: right; }
 #addthis_share_toolbox > a { float: none; display: inline-block; padding-left: 0px; padding-bottom: 0px; }
 #addthis_share_toolbox > a:last-of-type span { margin-right: 0px; }
+#addthis_share_toolbox .at300b:hover, #addthis_share_toolbox .at300bs:hover { opacity: 1; }
 
 .walkthrough { display: none; position: absolute; z-index: 51; cursor: pointer; max-width: 10000px; }
 
@@ -1126,29 +1127,39 @@ footer { background-color: #fce3cd; color: black; font-size: 0.75em; margin-bott
 .collectist-secondary:after { content: " / "; }
 
 @media only screen { .site-title { font-size: 0.8em; }
-  header .logo { position: absolute; }
+  header { padding-left: 95px; }
+  header > a { padding-top: 10px; }
+  header .logo { position: absolute; width: 73px; height: 63px; }
+  .collectist-header { font-size: 0.8em; white-space: nowrap; }
   .login-container { position: relative; top: 0px; height: 52px; margin-bottom: -42px; width: 100%; text-align: right; }
-  #addthis_login_toolbox { background-color: rgba(255, 250, 240, 0.95); padding: 4px; width: 196px; border: solid 3px rgba(100, 80, 40, 0.3); border-radius: 8px; }
-  .share-container { position: absolute; top: 300px; left: 20px; width: 40px; }
-  #share-bubble { right: 30px; left: 30px; }
+  #addthis_login_toolbox { background-color: rgba(255, 250, 240, 0.95); padding: 4px; width: 200px; border: solid 3px rgba(100, 80, 40, 0.3); border-radius: 8px; }
+  .share-container { position: absolute; top: 50px; left: 20px; width: 40px; }
+  #login-pow { right: 60px; width: 141px; height: 122px; }
+  #checklist-arrow { margin-left: -62px; width: 125px; height: 142px; }
+  #share-bubble { right: 30px; left: 30px; width: 116px; width: 78px; }
   #menu-container { position: static; float: none; width: 100%; padding-top: 20px; }
   #menu { position: static; float: none; width: 100%; }
-  #menu li { text-align: center; margin-right: 15px; width: auto; display: inline-block; -moz-border-radius-topright: 20px; -webkit-border-top-right-radius: 20px; border-top-right-radius: 20px; -moz-border-radius-bottomright: 20px; -webkit-border-bottom-right-radius: 20px; border-bottom-right-radius: 20px; }
+  #menu li { text-align: center; margin-right: 15px; width: auto; min-width: 250px; display: inline-block; -moz-border-radius-topright: 20px; -webkit-border-top-right-radius: 20px; border-top-right-radius: 20px; -moz-border-radius-bottomright: 20px; -webkit-border-bottom-right-radius: 20px; border-bottom-right-radius: 20px; }
   #menu li a { display: inline-block; }
-  #app-container { float: none; margin: auto; padding-top: 0px; padding-left: 35px; }
+  #app-container { position: relative; float: none; margin: auto; padding-top: 0px; padding-left: 35px; }
   #app { float: none; } }
-@media only screen and (min-width: 80em) { .site-title { font-size: 1em; }
-  header .logo { position: fixed; }
+@media only screen and (min-width: 80em) { header { padding-left: 180px; }
+  header > a { white-space: nowrap; padding-top: 28px; }
+  .site-title { font-size: 1em; }
+  .collectist-header { font-size: 1em; }
+  header .logo { position: fixed; width: 146px; height: 127px; }
   .login-container { width: auto; position: static; margin-bottom: 0px; top: auto; height: 0px; }
   #addthis_login_toolbox { position: absolute; top: -10px; margin-bottom: 0px; left: auto; background-color: transparent; border-width: 0px; }
   .share-container { position: fixed; top: 140px; left: 0px; width: 16.66667%; }
-  #share-bubble { left: 0px; right: -170px; }
+  #login-pow { width: 284px; height: 245px; right: 100px; }
+  #checklist-arrow { margin-left: -125px; width: 251px; height: 284px; }
+  #share-bubble { left: auto; right: -170px; width: 232px; height: 157px; }
   #addthis_share_toolbox { margin-right: 10px; }
   #menu-container { float: left; width: 16.66667%; padding-top: 70px; }
   #menu { position: fixed; width: 16.66667%; }
-  #menu li { text-align: right; margin-right: 0px; width: 100%; display: block; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0; border-top-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0; border-bottom-right-radius: 0; }
+  #menu li { text-align: right; margin-right: 0px; width: 100%; min-width: auto; display: block; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0; border-top-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0; border-bottom-right-radius: 0; }
   #menu li a { display: block; }
-  #app-container { float: right; width: 83.33333%; padding-top: 20px; padding-left: 0px; } }
+  #app-container { position: static; float: right; width: 83.33333%; padding-top: 20px; padding-left: 0px; } }
 h1 { color: #ffffff; text-shadow: rgba(170, 52, 36, 0.6) 5px 5px 3px; }
 
 h1, input[type=button] { font-style: italic; }

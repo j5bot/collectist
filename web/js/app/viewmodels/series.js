@@ -3,7 +3,8 @@ define([
 	'namespace',
 	'jquery',
 	'knockout',
-	'knockback'
+	'knockback',
+	'plugins/jquery-transit-min'
 ], function (Backbone, namespace, $, ko, kb) {
 
 	namespace('org.Collectist.App.ViewModels', {
@@ -106,6 +107,40 @@ define([
 				return (this.stickers && this.stickers()) || false;
 			},
 
+			animateCollection: function (data, event) {
+				var app = org.Collectist.app,
+					target = event.target,
+					$logo = $('header .logo'),
+					$img = $(target).parent().children('img'),
+					aniDupe, offset, logoOffset, logoDimensions;
+
+				if ($img.size() > 0) {
+					aniDupe = $img.clone();
+					offset = $img.offset();
+					logoOffset = $logo.offset();
+					logoDimensions = { height: $logo.height(), width: $logo.width() };
+					aniDupe.css({
+						position: 'absolute',
+						top: offset.top + 'px',
+						left: offset.left + 'px',
+						'z-index': 100,
+						'border-radius': '10px',
+						width: $img.width() + 'px',
+						height: $img.height() + 'px'
+					});
+					$('body').append(aniDupe);
+					aniDupe.transition({
+						x: (offset.left - (logoOffset.left + logoDimensions.width / 2)) * -1,
+						y: (offset.top - (logoOffset.top + logoDimensions.height / 2)) * -1,
+						height: $img.height() / 10,
+						width: $img.width() / 10
+					}, 800, 'easeInSine').
+						fadeOut(100, function () {
+							aniDupe.remove();
+						});
+				}
+			},
+
 			tick: function (data, event) {
 				var app = org.Collectist.app,
 					router = app.router,
@@ -117,6 +152,10 @@ define([
 					data, item,
 					position = parseInt($target.attr('value'), 10),
 					checked = $target.is(':checked');
+
+				if (checked) {
+					context.serieslist.animateCollection(data, event);
+				}
 
 				if (checklist !== null) {
 					data = checklist.bytes();

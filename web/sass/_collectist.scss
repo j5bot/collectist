@@ -33,7 +33,7 @@ $addthislogintoolboxbgcolor: rgba(255,250,240,0.95);
 
 header {
 	position: static;
-	height: 82px;
+	min-height: 82px;
 	width: 100%;
 
 	line-height: 22px;
@@ -46,13 +46,8 @@ header {
 
 	> a {
 		display: block;
-		position: absolute;
-		width: 100%;
-		top: 28px;
-		left: 0px;
-		padding-left: 181px;
+		padding-top: 28px;
 		color: $navbartextcolor;
-		white-space: nowrap;
 	}
 	> a:hover {
 		color: $navbartextcolor;
@@ -91,6 +86,8 @@ footer {
 	right: 20px;
 	z-index: 51;
 
+	text-align: center;
+
 	> a {
 		display: inline-block;
 	}
@@ -126,6 +123,7 @@ footer {
 
 #addthis_share_toolbox {
 	text-align: right;
+
 	> a {
 		float: none;
 		display: inline-block;
@@ -133,6 +131,10 @@ footer {
 		padding-bottom: 0px;
 
 		&:last-of-type span { margin-right: 0px; }
+	}
+
+	.at300b:hover, .at300bs:hover {
+		opacity: 1;
 	}
 }
 
@@ -160,6 +162,7 @@ footer {
 	top: 0px;
 	right: -170px;
 }
+
 
 .atm-f {
 	height: 24px !important;
@@ -241,7 +244,10 @@ footer {
 
 @media #{$screen} {
 	.site-title { font-size: 0.8em; }
-	header .logo { position: absolute; }
+	header { padding-left: 95px; }
+	header > a { padding-top: 10px; }
+	header .logo { position: absolute; width: 73px; height: 63px; }
+	.collectist-header { font-size: 0.8em; white-space: nowrap; }
 
 	.login-container {
 		position: relative;
@@ -254,17 +260,19 @@ footer {
 	#addthis_login_toolbox {
 		background-color: $addthislogintoolboxbgcolor;
 		padding: 4px;
-		width: 196px;
+		width: 200px;
 		border: solid 3px $appbordercolor;
 		border-radius: 8px;
 	}
 	.share-container {
 		position: absolute;
-		top: 300px;
+		top: 50px;
 		left: 20px;
 		width: 40px;
 	}
-	#share-bubble { right: 30px; left: 30px; }
+	#login-pow { right: 60px; width: 141px; height: 122px; }
+	#checklist-arrow { margin-left: -62px; width: 125px; height: 142px; }
+	#share-bubble { right: 30px; left: 30px; width: 116px; width: 78px; }
 	#menu-container { position: static; float: none; width: 100%; padding-top: 20px; }
 	#menu {
 		position: static; float: none; width: 100%;
@@ -272,18 +280,27 @@ footer {
 			text-align: center;
 			margin-right: 15px;
 			width: auto;
+			min-width: 250px;
 			display: inline-block;
 			@include border-right-radius($menuborderradius);
 			a { display: inline-block; }
 		}
 	}
-	#app-container { float: none; margin: auto; padding-top: 0px; padding-left: 35px; }
+	#app-container {
+		position: relative;
+		float: none;
+		margin: auto;
+		padding-top: 0px; padding-left: 35px;
+	}
 	#app { float: none; }
 }
 
 @media #{$medium} {
+	header { padding-left: 180px; }
+	header > a { white-space: nowrap; padding-top: 28px; }
 	.site-title { font-size: 1em; }
-	header .logo { position: fixed; }
+	.collectist-header { font-size: 1em; }
+	header .logo { position: fixed; width: 146px; height: 127px; }
 	.login-container { width: auto; position: static; margin-bottom: 0px; top: auto; height: 0px; }
 	#addthis_login_toolbox {
 		position: absolute; top: -10px; margin-bottom: 0px; left: auto;
@@ -296,7 +313,9 @@ footer {
 		left: 0px;
 		width: 16.66667%;
 	}
-	#share-bubble { left: 0px; right: -170px; }
+	#login-pow { width: 284px; height: 245px; right: 100px; }
+	#checklist-arrow { margin-left: -125px; width: 251px; height: 284px; }
+	#share-bubble { left: auto; right: -170px; width: 232px; height: 157px; }
 	#addthis_share_toolbox {
 		margin-right: 10px;
 	}
@@ -307,10 +326,16 @@ footer {
 			text-align: right;
 			margin-right: 0px;
 			width: 100%;
+			min-width: auto;
 			display: block;
 			@include border-right-radius(0);
 			a { display: block; }
 		}
 	}
-	#app-container { float: right; width: 83.33333%; padding-top: 20px; padding-left: 0px; }
+	#app-container {
+		position: static;
+		float: right;
+		width: 83.33333%;
+		padding-top: 20px; padding-left: 0px;
+	}
 }

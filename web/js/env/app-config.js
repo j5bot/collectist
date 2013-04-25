@@ -8,9 +8,10 @@
  */
 define([
 	'jquery',
+	'env/site-alias',
 	'app/modules/addthis',
 	'app/modules/checklist/walkthrough'
-], function ($, addthisModule, walkthrough) {
+], function ($, alias, addthisModule, walkthrough) {
 
 	/**
 	 * return the module as a function
@@ -21,7 +22,7 @@ define([
 	return function (app) {
 
 		// get the hostname for the site, so we show the right one :)
-		app.sitehost = window.location.hostname.split('.')[0];
+		app.sitehost = alias(window.location.hostname.split('.')[0]);
 
 		/**
 		 * update things in the head of the document: the title and
@@ -34,11 +35,11 @@ define([
 		function updatePage(response, status, xhr) {
 
 			function hideWalkthrough () {
-				window.localStorage.setItem('hide-walkthrough', true);
+				window.localStorage.setItem('hide-walkthrough', 'true');
 			}
 
 			function showWalkthrough () {
-				if (window.localStorage.getItem('hide-walkthrough') !== true) {
+				if (window.localStorage.getItem('hide-walkthrough') !== 'true') {
 					walkthrough(hideWalkthrough);
 				}
 			}

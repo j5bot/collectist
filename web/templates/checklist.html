@@ -10,6 +10,12 @@
 	</article>
 </script>
 
+<script type="text/template" id="sites-template">
+	<ul class="sites-menu" data-bind="foreach: { data: sitelist }">
+		<li><a data-bind="text: title, attr: { href: url }">Site</a></li>
+	</ul>
+</script>
+
 <script type="text/template" id="menu-template">
 	<ul class="series-menu" data-bind="foreach: { data: series, as: 'seriesmenu' }">
 		<li><a data-bind="text: name, attr: { href: '/series/' + seriesmenu.id() }">Series</a></li>
